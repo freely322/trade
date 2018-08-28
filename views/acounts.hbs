@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Main</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="js/http.js"></script>
+  </head>
+  <body>
+    {{> head}}
+    <div class="container-fluid">
+      <span> My acounts </span>
+      
+      <form ng-submit="showToggle = false" action='/acounts/add' method='post'>
+        <div class="panel-group">
+          <div class="panel panel-default">
+           <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">Birja</a>
+              </h4>
+            </div>
+          <div id="collapse1" class="panel-collapse collapse">
+        <ul class="list-group">
+          <li class="list-group-item" >
+              <input type="radio" checked name="tag" value="bitfinex"/> Bitfinex<br>
+          </li>
+          <li class="list-group-item" >
+              <input type="radio" name="tag" value="poloniex"/>Poloniex <br>
+          </li>
+          <li class="list-group-item" >
+              <input type="radio" name="tag" value="binance"/> Binance<br>
+          </li>
+        </ul>
+        </div>
+        </div>
+        </div> 
+        <label>API name</label>
+        <input type="text" name="fname" required><br>
+        <label>API key</label>
+        <input type="text" name="key" required><br>
+        <label>API secret</label>
+        <input type="text" name="secret" required><br>
+        
+        <button class="btn" ng-hide="showToggle" ng-click="showToggle = !showToggle" type="submit">Add</button>
+      </form>
+  </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <u class="list-group list-group-flush">
+        {{#each acounts}}
+          <li class="list-group-item">
+            <span>{{name}}</span>
+            <span>{{tag}}</span>
+            <form action='' method='POST' style="float:left;">
+              <input type='text' name='key' value='{{key}}' hidden>
+              <input type='text' name='tag' value='{{tag}}' hidden>
+              <input type='text' name='secret' value='{{secret}}' hidden>
+              <button class="btn" type='submit'> Edit</button>
+            </form>
+            <form action='/acounts/delete' method='POST' style="float:left;">
+              <input type='text' name='fname' value='{{name}}' hidden>
+              <button class="btn" type='submit'> Remove</button>
+            </form>
+            <form action='/acounts/getBalance' method='POST' style="float:left;">
+              <input type='text' name='tag' value='{{tag}}' hidden>
+              <input type='text' name='fname' value='{{name}}' hidden>
+              <button class="btn" type='submit'> Balance</button>
+            </form>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    {{> footer}}
+  </body>
+</html>

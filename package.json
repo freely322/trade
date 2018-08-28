@@ -1,0 +1,50 @@
+{
+  "name": "traderium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magnafilix/traderium.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magnafilix/traderium/issues"
+  },
+  "homepage": "https://github.com/magnafilix/traderium#readme",
+  "dependencies": {
+    "autobahn": "^18.3.2",
+    "bcrypt": "^2.0.0",
+    "bitfinex-api-node": "^2.0.0-beta",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.13",
+    "morgan": "^1.9.0",
+    "node-binance-api": "^0.4.26",
+    "node-fetch": "^2.1.2",
+    "nodemon": "^1.17.3",
+    "nonce": "^1.0.4",
+    "poloniex.js": "0.0.8",
+    "request": "^2.85.0",
+    "socket.io": "^2.1.0",
+    "url": "^0.11.0",
+    "uuid": "^3.2.1",
+    "ws": "^5.1.0"
+  },
+  "devDependencies": {
+    "pm2": "^2.10.1"
+  }
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+  <link rel="stylesheet" href="/css/text.css">
+  <script type="text/javascript" src="/js/http.js"></script>
+</head>
+<body style="background-color: rgb(37,75,88);" ng-controller="soCtrl">
+  <script>
+    window.uid = '{{userid}}';
+  </script>
+  <nav class="navbar navbar-inverse" style="background-color:rgb(18,50,63); margin-bottom: 5px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+            <a class="navbar-brand" href="/home">LOGO</a>
+        </div>
+      <ul class="nav navbar-nav">
+          <li><a href="/Help"> Help</a></li>
+          <li><a href="/Api">Api</a></li>
+          <li><a href="/Fees">Fees</a></li>
+          <li><a href="/Careers">Careers</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+              <span class="glyphicon glyphicon-user"></span>
+                 Sign Up
+              </a>
+            </li>
+          <li>
+            <a href="#">
+            <span class="glyphicon glyphicon-log-in"></span>
+               Sign in</a>
+          </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                English
+                <span class="caret"></span>
+            </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Русский</a></li>
+              </ul>
+          </li>
+        </ul>
+    </div>  
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" style="padding-left: 25px; padding-right: 25px;">
+        <div class="row" style="background-color: rgb(18,50,63); height: 30px; margin-bottom: 5px;">
+        </div>
+        <div class="row" style="background-color: rgb(18,50,63); height: 25px; margin-bottom: 5px;">
+        </div>
+        <div class="row" style="margin-bottom: 5px;">
+          <div class='col-md-3' style="background-color: rgb(14,41,52); height: 40px; margin-right: 5px;">
+            
+          </div>
+          <div class='col-md-8' style="background-color: rgb(14,41,52); height: 40px; ">
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row" style="background-color: rgb(18,50,63); height: 30px; margin-bottom: 5px;">  
+        </div>
+        <div class="row" style="background-color: rgb(18,50,63); margin-bottom: 5px;">
+          <div class="col-md-10" style="background-color: rgb(18,50,63); height: 800px;">
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                
+                  new TradingView.widget({
+                          "autosize": true,
+                          "symbol": "BITFINEX:NEOUSD",
+                          "interval": "60",
+                          "timezone": "Etc/UTC",
+                          "theme": "Dark",
+                          "style": "1",
+                          "locale": "en",
+                          "toolbar_bg": "rgba(255, 255, 255, 1)",
+                          "enable_publishing": false,
+                          "hide_side_toolbar": false,
+                          "allow_symbol_change": true,
+                          "show_popup_button": true
+                        });
+                
+                </script>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row text-center">
+            <div class="col-md-4" style="background-color: rgb(18,50,63); font-size: 25px;">
+              Open orders
+            </div>
+            <div class="col-md-4" style="background-color: rgb(14,41,52); font-size: 25px;">
+              Pending orders
+            </div>
+            <div class="col-md-4" style="background-color: rgb(14,41,52); font-size: 25px;">
+              Closed orders
+            </div>
+          </div>
+          <div class="row" style="background-color: rgb(18,50,63);">
+            <table class="text-center table" id="opened_orders">
+              <thead>
+                <tr>
+                  <th><div>Order</div></th>
+                  <th ><div class="cell_i">Instrument</div></th>
+                  <th ><div class="cell_i">Action</div></th>
+                  <th ><div class="cell_i">Open time</div></th>
+                  <th ><div class="cell_i">Open price</div></th>
+                  <th ><div class="cell_i">Volume</div></th>
+                  <th ><div class="cell_i">S/L</div></th>
+                  <th ><div class="cell_i">T/P</div></th>
+                  <th ><div class="cell_i">Market</div></th>
+                  <th ><div class="cell_i">Commission</div></th>
+                  <th ><div class="cell_i">Swap</div></th>
+                  <th ><div class="cell_i">Profit</div></th>
+                  <th ><div class="cell_i">Close</div></th>
+                  <th ><div class="cell_i">Comment</div></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2" style="padding-left: 25px; padding-right: 25px;" ng-controller='orderCtrl'  ng-switch='ordertag'>
+        <div class="row" style="background-color: rgb(18,50,63); height: 30px; margin-bottom: 5px;">
+        </div>
+        <div class="row" style="background-color: rgb(18,50,63); margin-bottom: 5px;">
+          <div class="row" ng-init="aco='exchange'">
+            <div class="col-md-4">
+              Orders
+            </div>
+            <div class="col-md-8">
+              <div class="col-md-6" ng-click="aco='exchange'" >
+                Exchange
+                <div ng-if="aco==='exchange'" style="background-color: white; height: 2px;">
+                </div>
+              </div>
+              <div class="col-md-6" ng-click="aco='margin'">
+                Margin
+                <div ng-if="aco==='margin'" style="background-color: white; height: 2px; ">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6" style="background-color: rgb(14,41,52); margin-left:25px;">
+              <button type="button" data-toggle="modal" data-target="#myModal" ng-click="getAcounts(tag)">
+              Add acount +
+              </button><!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content" style="background-color: rgb(18,50,63);">
+                    <div class="modal-header" style="background-color: rgb(14,41,52);">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h3>\{{tag.toUpperCase()}}</h3>
+                    </div>
+                    <div class="modal-body" >
+                      <div ng-repeat="a in acs">
+                        \{{a.name}}
+                        <span>
+                          <span class="glyphicon glyphicon-plus" ng-click="acounts.push({name:a.name,tag:tag})&&acs.splice($index,1)"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10" style="background-color: rgb(14,41,52); height: 150px; margin-left:25px;">
+              <span ng-repeat="acc in acounts" >
+                \{{acc.name}}
+                <span class="glyphicon glyphicon-remove-circle" ng-click="acounts.splice($index,1)"></span>
+              </span>
+            </div>
+          </div>
+          <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">\{{ordertag}}
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" style="color:black;">
+              <li ng-click="ordertag='Limited'">Limited</li>
+              <li ng-click="ordertag='TP&SL'">TP&SL</li>
+              <li ng-click="ordertag='Market'">Market</li>
+            </ul>
+          </div>
+        <div ng-switch-when='Market' ng-init="amount=0">
+          <div class="row" >
+            <div class="col-md-6">
+              <label>Price USD</label>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="green" />
+                </svg>
+              </span>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="red" />
+                </svg>
+              </span>
+            </div >
+            <div class="col-md-6">
+              <label>Amount BTC</label>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="green" />
+                </svg>
+              </span>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="red" />
+                </svg>
+              </span>
+            </div >
+          </div>
+          <div class="row" >
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="price" ng-bind="price">
+            </div >
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="amount" ng-bind="amount">
+            </div >
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="button" class="btn btn-success" name="buy" value="Buy" ng-click="makeOrderMarket(tag,aco,'buy',amount)">
+            </div >
+            <div class="col-md-6">
+              <input type="button" class="btn btn-danger" name="sell" value="Sell" ng-click="makeOrderMarket(tag,aco,'sell',amount)">
+            </div >
+          </div>
+        </div> 
+        <div ng-switch-when='Limited'>
+          <div class="row">
+            <div class="col-md-6">
+              <label>PriceUSDFrom</label>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="green" />
+                </svg>
+              </span>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="red" />
+                </svg>
+              </span>
+            </div >
+            <div class="col-md-6">
+              <label>Amount BTC</label>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="green" />
+                </svg>
+              </span>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="red" />
+                </svg>
+              </span>
+            </div >
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="price" ng-model="priceF">
+            </div >
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="amountFrom" ng-model="amountL">
+            </div >
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Price USD To</label>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="green" />
+                </svg>
+              </span>
+              <span>
+                <svg width="10" height="10">
+                    <circle cx="5" cy="5" r="4"  stroke-width="4" fill="red" />
+                </svg>
+              </span>
+            </div >
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="amountTo" ng-model="priceT">
+            </div >
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="button" class="btn btn-success" name="buy" value="Buy" ng-click="makeOrderLimited(tag,aco,'buy',priceF,amountL,priceT)">
+            </div >
+            <div class="col-md-6">
+              <input type="button" class="btn btn-danger" name="sell" value="Sell" ng-click="makeOrderLimited(tag,aco,'sell',priceF,amountL,priceT)">
+            </div >
+          </div>
+        </div>
+        <div ng-switch-when='TP&SL'>
+          <div ng-init="tp=[]">
+            <label ng-init="tpi=['1']">Take Profit</label>
+            <span ng-click="tpi.push(''+tpi.length+1)">+</span>
+            <span ng-click="(tpi.length>1)&&tpi.pop()">-</span>
+            <div ng-repeat="t in tpi" ng-init="tp.push({amount:0,deposit:0})">
+              <div class="row" >
+                <div class="col-md-6">
+                  <label>Amount</label>
+                </div >
+                <div class="col-md-6">
+                  <label>% Deposit</label>
+                </div >
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" ng-model="tp[$index]['amount']">
+                </div >
+                <div class="col-md-6">
+                  <input type="text" class="form-control" ng-model="tp[$index]['deposit']">
+                </div >
+              </div>
+            </div>
+          </div>
+          <div ng-init="sl=[]">
+            <label ng-init="sli=['1']">Stop Loss</label>
+            <span ng-click="sli.push(''+sli.length+1)">+</span>
+            <span ng-click="(sli.length>1)&&sli.pop()">-</span>
+            <div ng-repeat="s in sli" ng-init="sl.push({amount:0,deposit:0})">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Amount</label>
+                </div >
+                <div class="col-md-6">
+                  <label>% Deposit</label>
+                </div >
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" ng-model="sl[$index]['amount']">
+                </div >
+                <div class="col-md-6">
+                  <input type="text" class="form-control" ng-model="sl[$index]['deposit']">
+                </div >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="button" class="btn btn-success" name="buy" value="Buy" ng-click="makeOrderTPSL(tag,aco,{tp:tp,sl:sl})">
+            </div >
+          </div>
+        </div>
+
+        </div>
+        <div class="row">
+          <div class="row" style="background-color: rgb(14,41,52); height:25px; padding-left: 25px; padding-right: 25px;">
+            Остатки
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/s3style.css" rel="stylesheet">
+</head>
+
+<body class="s3">
+
+<div class="wrapper">
+	<header class="header">
+    <div class="header_content">
+      <div class="header_logo">
+        <a href="#"><img src="assets/header_logo.png" alt="logo"></a>
+
+      </div>
+      <div class="header_menu">
+        <ul class="display_inline">
+          <li><a href="#" class="navbar-brand">Help</a></li>
+          <li><a href="#" class="navbar-brand">Api</a></li>
+          <li><a href="#" class="navbar-brand">Fees</a></li>
+          <li><a href="#" class="navbar-brand">Careers</a></li>
+        </ul>
+      </div>
+      <div class="haader_login">
+        <ul class="display_inline">
+          <li><a href="https://afternoon-everglades-93887.herokuapp.com/home" class="navbar-brand">Home</a></li>
+          <li><a href="#" class="navbar-brand">Русский <img src="assets/rectangle_2.png" alt="logo"></a></li>
+        </ul>
+      </div>
+    </div>
+	</header><!-- .header-->
+	<div class="content_header_h content_header_h_m">
+		<ul class="display_inline">
+			<li class="active"><a href="#" class="navbar-brand active">Настройки</a></li>
+			<li class=" "><a href="#" class="navbar-brand">Отчеты о торгах</a></li>
+			<li class=" "><a href="#" class="navbar-brand">Обмен валют</a></li>
+		</ul>
+	</div>	
+	<div class="middle">
+
+		<div class="container">
+
+			<main class="content">
+
+        <div class="content_header API_Accounts">
+				<span class="content_header_h">
+					<h3>API Accounts</h3>
+				</span>
+				  <form class="form profile" action="/createprofile" method="POST">
+					<input type="submit" name="" class="btn_view unique" value="Добавить">
+					<div class="right_sidebar_contentTakeProfit">
+					  <div class="formInput">
+						<label for="TakeProfitAmount">Nickname</label>
+						<input type="text" name="name" value="" id="TakeProfitAmount" placeholder="" required>
+					  </div>
+					  <div class="formInput">
+						<label for="TakeProfitDepo">Exchange</label>
+						<input type="text" name="tag" value="" id="TakeProfitDepo" placeholder="" required>
+					  </div>
+					  <div class="formInput">
+						<label for="StopLosAmount">Type</label>
+						<input type="text" name="type" value="" id="StopLosAmount" placeholder="" required>
+					  </div>
+					  
+					  <div class="formInput API_AccountsformInput">
+							<label for="StopLosDepo">Key</label>
+						<input type="text" name="key" value="" id="StopLosDepo" placeholder="" required>		
+						<label for="StopLosDepo">Secret</label>
+						<input type="text" name="secret" value="" id="StopLosDepo" placeholder="" required>				
+					  </div>
+					</div>
+				  </form>	
+
+        </div>
+
+        <div class="content_orders APIAccounts_List">
+			<div class="content_header_h">
+				<h3>API Accounts List</h3>
+			</div>			
+          <div class="content_order_info">
+            <div class="open_orders">
+              <table>
+              <caption></caption>
+                <tr>
+                  <th>Nickname</th>
+                  <th>Type</th>
+                  <th>Exchange</th>
+                  <th>Secret</th>
+                  <th> Удалить</th>
+                </tr>
+                <tr>
+                  <td >Troiuq</td>
+                  <td >Exchange</td>
+                  <td >Bitfinex</td>
+                  <td ><a href="#">&#10004;</a></td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+                <tr>
+                  <td >Troiuq</td>
+                  <td >Exchange</td>
+                  <td >Bitfinex</td>
+                  <td ><a href="#">&#10004;</a></td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+                <tr>
+                  <td >Troiuq</td>
+                  <td >Exchange</td>
+                  <td >Bitfinex</td>
+                  <td ><a href="#">&#10004;</a></td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+              </table>
+            </div>
+            <div class="pending_orders">
+
+            </div>
+            <div class="closed_orders">
+
+            </div>
+          </div>
+        </div>
+			</main><!-- .content -->
+		</div><!-- .container-->
+
+		<aside class="left-sidebar">
+			<div class="left_sidebar_headet">
+				<div class="content_header_h">
+					<h3>Профиль</h3>
+				</div>	
+				  <form class="form profile" action="" method="post">
+					<div class="right_sidebar_contentTakeProfit">
+					  <div class="formInput">
+						<label for="TakeProfitAmount"> Имя</label>
+						<input type="text" name="" value="" id="TakeProfitAmount" placeholder="Take Profit">
+					  </div>
+					  <div class="formInput">
+						<label for="TakeProfitDepo"> Пароль</label>
+						<input type="text" name="" value="" id="TakeProfitDepo" placeholder="***********">
+					  </div>
+					  <div class="formInput">
+						<label for="StopLosAmount"> E-mail</label>
+						<input type="text" name="" value="" id="StopLosAmount" placeholder="Take Profit@gmail.com">
+					  </div>
+					  <div class="formInput">
+						<label for="StopLosDepo">Язык</label>
+						<input type="text" name="" value="" id="StopLosDepo" placeholder="Russia">
+					  </div>
+					  <div class="formInput">
+						<label for="StopLosDepo">Телефон</label>
+						<input type="text" name="" value="" id="StopLosDepo" placeholder="+7">
+					  </div>
+					  <div class="formInput">				  
+						<input type="submit" name="submit" class="btn btn_edit" value="Редактировать">					  
+						<input type="submit" name="submit" class="btn btn_pr" value="Применить">	
+					  </div>					
+					</div>
+				  </form>			
+			</div>
+			<div class="left_sidebar_headet Status_Balance">
+				<div class="content_header_h">
+					<h3></h3>
+				</div>	
+				  <form class="form profile" action="" method="post">
+					<div class="right_sidebar_contentTakeProfit">
+					  <div class="formInput">
+						<label for="TakeProfitAmount"> Status</label>
+						<input type="text" name="" value="" id="TakeProfitAmount" placeholder="Active">
+						<label for="TakeProfitDepo"> Payment Type</label>
+						<input type="text" name="" value="" id="TakeProfitDepo" placeholder="Credit">
+						<label for="StopLosAmount">Expires</label>
+						<input type="text" name="" value="" id="StopLosAmount" placeholder="2018-04-12">					
+					  </div>
+					  <div class="formInput">
+							<div class="Balance">
+							  <div class="Balance_h">
+								<h3>Balance</h3>
+							  </div>
+								<div class="Balance_c">
+								<span>USD   398</span>
+							  </div>					  
+							  
+							</div>
+					  </div>
+					</div>
+						<input type="submit" name="submit" class="btn btn_edit" value="Manage Subscription">	
+				  </form>				
+			</div>			
+			<div class="left_sidebar_headet Referal">
+				<div class="content_header_h">
+					<h3></h3>
+				</div>
+				<div class="content_Referal">
+					<h4>Share your link with friends and earn</br> $15 per sign up!</h4>
+					<div class="content_Referal_link">
+						<div class="content_Referal_t">Referal link:</div>
+						<div class="content_Referal_l">https://www.xxxxxxxx.com/12=33252234</div>
+					</div>
+					<ul class="display_inline">
+						<li class=" "><a href="#" class="navbar-brand active">Twitter</a></li>
+						<li class=" "><a href="#" class="navbar-brand">Facebook</a></li>
+						<li class=" "><a href="#" class="navbar-brand">More...</a></li>
+					</ul>					
+				</div>	
+				
+			</div>				
+		</aside><!-- .left-sidebar -->
+
+		<aside class="right-sidebar">
+			<div class="right_sidebar_haeder Authenticationform">
+				<div class="content_header_h">
+					<h3>Аудентификации</h3>
+				</div>	
+				<h4>Добавить 2-факторную аутенфикацию по токену в приложении для Google Android или iPhone</h4>
+				  <form class="form profile" action="" method="post">
+				<h4>Защищенные действия:</h4>				  
+					<div class="right_sidebar_contentTakeProfit">
+					  <div class="formInput">
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label">Вход</span>
+						</label>	
+			
+					  </div>						
+					  <div class="formInput">
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label">Подтверждения снятия</span>
+						</label>	
+					  </div>
+					  <div class="formInput">	
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label">Изменения пароля</span>
+						</label>
+					  </div>
+					  <div class="formInput">
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label">Создания ключа IP</span>
+						</label>					  
+					  </div>
+					  <div class="formInput">	
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label"> Изменения в настройках</span>
+						</label>	
+					  </div>
+					  <div class="formInput">	
+						<label>
+							<input class="radio" type="radio" name="radio-test">
+							<span class="radio-custom"></span>
+							<span class="label"> безопасности</span>
+						</label>	
+			
+					  </div>
+					  <div class="formInput">				  
+						<input type="submit" name="submit" class="btn btn_edit" value="Редактировать">					  
+					  </div>	
+					  <div class="formInput">				  
+						<input type="submit" name="submit" class="btn btn_pr" value="Применить">	
+					  </div>					
+					</div>
+				  </form>				
+				
+				
+				
+			</div>
+			<div class="right_sidebar_content Security">
+				<div class="content_header_h">
+					<h3>Безопасность</h3>
+				</div>
+				<div class="Security_content">
+				
+					<h4>Оставить сеанс </h4>
+					<p>Если вы авторизованы в системе, но неактивны, браузер будет пинговать платформу каждые 10 минут, чтобы сеанс не закрылся. Если эта функция отключена, сеанс закроется после 30 минут простоя.</p>
+			
+					<div class="toggle-bg">
+						<input type="radio" name="toggle" value="off" >
+						<input type="radio" name="toggle" value="on">
+						<span class="switch"></span>
+					</div>
+					
+				</div>	
+				<div class="Security_content">
+				
+					<h4>Отправлять письмо при входе в систему </h4>
+					<p>При каждом входе в учетную запись вы будете получать электронное письмо с информацией об IP-адресе авторизованного пользователя и ссылкой для блокировки учетной записи на случай несанкционированных действий в ней.</p>
+					<div class="toggle-bg">
+						<input type="radio" name="toggle" value="off">
+						<input type="radio" name="toggle" value="on">
+						<span class="switch"></span>
+					</div>
+				</div>	
+				<div class="Security_content">
+				
+					<h4>Не завершать сессию при изменении моего IP адреса</h4>
+					<p>Установите флажок, если вы хотите, чтобы сессия не закрывалась при изменении IP-адреса (например, при переходе вашего мобильного устройства с Wi-Fi на LTE).</p>
+					<div class="toggle-bg">
+						<input type="radio" name="toggle" value="off">
+						<input type="radio" name="toggle" value="on">
+						<span class="switch"></span>
+					</div>
+				</div>		  
+
+			</div>
+
+		</aside><!-- .right-sidebar -->
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+<footer class="footer">
+</footer><!-- .footer -->
+
+</body>
+</html>

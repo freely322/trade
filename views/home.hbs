@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body ng-controller="soCtrl">
+<div class="wrapper">
+	<header class="header">
+    <div class="header_content">
+      <div class="header_logo">
+        <a href="#"><img src="assets/header_logo.png" alt="logo"></a>
+
+      </div>
+      <div class="header_menu">
+        <ul class="display_inline">
+          <li><a href="#" class="navbar-brand">Help</a></li>
+          <li><a href="#" class="navbar-brand">Api</a></li>
+          <li><a href="#" class="navbar-brand">Fees</a></li>
+          <li><a href="#" class="navbar-brand">Careers</a></li>
+        </ul>
+      </div>
+      <div class="haader_login">
+        <ul class="display_inline">
+          <li class="active"><a href="https://afternoon-everglades-93887.herokuapp.com/profile" class="navbar-brand">My profile</a></li>
+          <li  class=""><a href="#" class="navbar-brand">Русский <img src="assets/rectangle_2.png" alt="logo"></a></li>
+        </ul>
+      </div>
+    </div>
+	</header><!-- .header-->
+
+	<div class="middle">
+
+		<div class="container">
+
+			<main class="content">
+
+        <div class="content_header">
+
+        </div>
+        <div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+              <div id="chartMe" class="content_graph">
+                <!-- THE ACTUAL GRAPH IS LOADED FROM file http.js -->
+                </div>
+        </div>
+
+        <div class="content_orders">
+          <div class="content_order_head">
+            <ul class="display_inline content_order_menu">
+              <li class="active"><a href="#">Ордера buy</a></li>
+              <li><a href="#">Ордера sell</a></li>
+              <li><a href="#">Все ордера</a></li>
+            </ul>
+          </div>
+          <div class="content_order_info">
+            <div class="open_orders">
+              <table>
+              <caption></caption>
+                <tr>
+                  <th>Инструмент</th>
+                  <th>Действие</th>
+                  <th>Время открытия</th>
+                  <th>Открытая цена</th>
+                  <th>Объем</th>
+                  <th>S/L</th>
+                  <th>T/P</th>
+                  <th>Рынок</th>
+                  <th>Биржа</th>
+                  <th> Удалить</th>
+                </tr>
+                <tr>
+                  <td >AID/USD </td>
+                  <td >buy</td>
+                  <td >06.02.2018 10:25</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >0.2</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >Binance</td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+                <tr>
+                  <td >AID/USD </td>
+                  <td >buy</td>
+                  <td >06.02.2018 10:25</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >0.2</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >Binance</td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+                <tr>
+                  <td >AID/USD </td>
+                  <td >buy</td>
+                  <td >06.02.2018 10:25</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >0.2</td>
+                  <td >43.1</td>
+                  <td >0.23846</td>
+                  <td >Binance</td>
+                  <td> <a href="#">&#10006;</a></td>
+                </tr>
+              </table>
+            </div>
+            <div class="pending_orders">
+
+            </div>
+            <div class="closed_orders">
+
+            </div>
+          </div>
+        </div>
+			</main><!-- .content -->
+		</div><!-- .container-->
+<div class="wrapit" ng-controller="orderCtrl">
+		<aside class="left-sidebar">
+      <div class="left_sidebar_headet">
+        <ul class="display_inline ">
+          <li class="pointNow active" ng-click="showme=false"><a href="#">Биржа</a></li>
+          <li class="pointNow" ng-click="showme=true"><a href="#">Объем торгов</a></li>
+        </ul>
+      </div>
+      <div class="left_sidebar_choice">
+        <ul class="display_inline ">
+          <li class="pointToStar">
+            <a href="#" style="font-size:18px;" class ="fa fa-star"></a>
+          </li>
+          <li class="pointToFilter">
+            <input type="text" placeholder="Filter..." class="hidingInput">
+          </li>
+        </ul>
+      </div>
+      <div class="left_sidebar_content" ng-show="showme">
+        <table>
+        <caption></caption>
+          <tr>
+            <th>Symbol <a href="#"><img src="assets/icone3.png" alt=""></a></th>
+            <th>Last  <a href="#"><img src="assets/icone3.png" alt=""></a></th>
+            <th>24 H  <a href="#"><img src="assets/icone3.png" alt=""></a></th>
+            <th>Vol  <a href="#"><img src="assets/icone3.png" alt=""></a></th>
+
+          </tr>
+          <tr>
+            <td>forex</td>
+            <td>3.56</td>
+            <td class="color_red">9.65 %</td>
+            <td>6598.65</td>
+          </tr>
+          <tr>
+            <td>forex</td>
+            <td>3.56</td>
+            <td class="color_gren">9.65 %</td>
+            <td>6598.65</td>
+          </tr>
+          <tr>
+            <td>forex</td>
+            <td>3.56</td>
+            <td class="color_red">9.65 %</td>
+            <td>6598.65</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="burse" ng-hide="showme">
+         <div class="tag">
+            <a href="" ng-click="numb = 0">
+              <span>Bitfinex</span>
+            </a>
+            <a href="" ng-click="numb = 1">
+              <span>Binance</span>
+            </a>
+            <a href="" ng-click="numb = 2">
+              <span>Poloniex</span>
+            </a>
+          </div>
+          <div class="tag symbol" ng-if="numb === 0">
+            <a href="" ng-click="setTag('bitfinex','BTCUSD')"><span>BTCUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ETHUSD')"><span>ETHUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','XRPUSD')"><span>XRPUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','LTCUSD')"><span>LTCUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','BCHUSD')"><span>BCHUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','NEOUSD')"><span>NEOUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','EOSUSD')"><span>EOSUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','IOTUSD')"><span>IOTUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ETCUSD')"><span>ETCUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','OMGUSD')"><span>OMGUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ETHBTC')"><span>ETHBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','BTCUSDSHORTS')"><span>BTCUSDSHORTS</span></a>
+            <a href="" ng-click="setTag('bitfinex','XMRUSD')"><span>XMRUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ETCBTC')"><span>ETCBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','EOSBTC')"><span>EOSBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','BTCUSDLONGS')"><span>BTCUSDLONGS</span></a>
+            <a href="" ng-click="setTag('bitfinex','BCHBTC')"><span>BCHBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','XRPBTC')"><span>XRPBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','NEOBTC')"><span>NEOBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','BTGUSD')"><span>BTGUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ZECUSD')"><span>ZECUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','LTCBTC')"><span>LTCBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','TRXUSD')"><span>TRXUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','IOTBTC')"><span>IOTBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','OMGBTC')"><span>OMGBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','DSHUSD')"><span>DSHUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','TRXBTC')"><span>TRXBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','XMRBTC')"><span>XMRBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','SANUSD')"><span>SANUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ETPUSD')"><span>ETPUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ZECBTC')"><span>ZECBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','BTGBTC')"><span>BTGBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','SNTUSD')"><span>SNTUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','QTMUSD')"><span>QTMUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ZRXUSD')"><span>ZRXUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','QSHUSD')"><span>QSHUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','GNTUSD')"><span>GNTUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','FUNUSD')"><span>FUNUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','BTCEUR')"><span>BTCEUR</span></a>
+            <a href="" ng-click="setTag('bitfinex','DATUSD')"><span>DATUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','EDOUSD')"><span>EDOUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','ZRXBTC')"><span>ZRXBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','YYWUSD')"><span>YYWUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','EOSETH')"><span>EOSETH</span></a>
+            <a href="" ng-click="setTag('bitfinex','NEOETH')"><span>NEOETH</span></a>
+            <a href="" ng-click="setTag('bitfinex','BATUSD')"><span>BATUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','TNBUSD')"><span>TNBUSD</span></a>
+            <a href="" ng-click="setTag('bitfinex','QSHBTC')"><span>QSHBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','EDOBTC')"><span>EDOBTC</span></a>
+            <a href="" ng-click="setTag('bitfinex','SNTBTC')"><span>SNTBTC</span></a>
+          </div>
+
+          <div class="tag symbol" ng-if="numb === 1">
+            <a href="" ng-click="setTag('binance','BTCUSDT')"><span>BTCUSDT</span></a>
+            <a href="" ng-click="setTag('binance','TRXBTC')"><span>TRXBTC</span></a>
+            <a href="" ng-click="setTag('binance','ICXBTC')"><span>ICXBTC</span></a>
+            <a href="" ng-click="setTag('binance','VENBTC')"><span>VENBTC</span></a>
+            <a href="" ng-click="setTag('binance','XRPBTC')"><span>XRPBTC</span></a>
+            <a href="" ng-click="setTag('binance','NANOBTC')"><span>NANOBTC</span></a>
+            <a href="" ng-click="setTag('binance','ADABTC')"><span>ADABTC</span></a>
+            <a href="" ng-click="setTag('binance','XLMBTC')"><span>XLMBTC</span></a>
+            <a href="" ng-click="setTag('binance','ETHUSDT')"><span>ETHUSDT</span></a>
+            <a href="" ng-click="setTag('binance','NEOBTC')"><span>NEOBTC</span></a>
+            <a href="" ng-click="setTag('binance','ETHBTC')"><span>ETHBTC</span></a>
+            <a href="" ng-click="setTag('binance','NEOUSDT')"><span>NEOUSDT</span></a>
+            <a href="" ng-click="setTag('binance','ETCBTC')"><span>ETCBTC</span></a>
+            <a href="" ng-click="setTag('binance','DGDBTC')"><span>DGDBTC</span></a>
+            <a href="" ng-click="setTag('binance','XVGBTC')"><span>XVGBTC</span></a>
+            <a href="" ng-click="setTag('binance','CNDBTC')"><span>CNDBTC</span></a>
+            <a href="" ng-click="setTag('binance','WTCBTC')"><span>WTCBTC</span></a>
+            <a href="" ng-click="setTag('binance','LTCBTC')"><span>LTCBTC</span></a>
+            <a href="" ng-click="setTag('binance','EOSBTC')"><span>EOSBTC</span></a>
+            <a href="" ng-click="setTag('binance','IOTABTC')"><span>IOTABTC</span></a>
+            <a href="" ng-click="setTag('binance','BNBUSDT')"><span>BNBUSDT</span></a>
+            <a href="" ng-click="setTag('binance','OMGBTC')"><span>OMGBTC</span></a>
+            <a href="" ng-click="setTag('binance','BNBBTC')"><span>BNBBTC</span></a>
+            <a href="" ng-click="setTag('binance','LTCUSDT')"><span>LTCUSDT</span></a>
+            <a href="" ng-click="setTag('binance','VIBEBTC')"><span>VIBEBTC</span></a>
+            <a href="" ng-click="setTag('binance','IOSTBTC')"><span>IOSTBTC</span></a>
+            <a href="" ng-click="setTag('binance','TRXETH')"><span>TRXETH</span></a>
+            <a href="" ng-click="setTag('binance','POEBTC')"><span>POEBTC</span></a>
+            <a href="" ng-click="setTag('binance','ELFBTC')"><span>ELFBTC</span></a>
+            <a href="" ng-click="setTag('binance','HSRBTC')"><span>HSRBTC</span></a>
+            <a href="" ng-click="setTag('binance','SUBBTC')"><span>SUBBTC</span></a>
+            <a href="" ng-click="setTag('binance','NEBLBTC')"><span>NEBLBTC</span></a>
+            <a href="" ng-click="setTag('binance','APPCBTC')"><span>APPCBTC</span></a>
+            <a href="" ng-click="setTag('binance','ZRXBTC')"><span>ZRXBTC</span></a>
+            <a href="" ng-click="setTag('binance','AIONBTC')"><span>AIONBTC</span></a>
+            <a href="" ng-click="setTag('binance','LSKBTC')"><span>LSKBTC</span></a>
+            <a href="" ng-click="setTag('binance','PPTBTC')"><span>PPTBTC</span></a>
+            <a href="" ng-click="setTag('binance','LENDBTC')"><span>LENDBTC</span></a>
+            <a href="" ng-click="setTag('binance','VENETH')"><span>VENETH</span></a>
+            <a href="" ng-click="setTag('binance','BCPTBTC')"><span>BCPTBTC</span></a>
+            <a href="" ng-click="setTag('binance','KNCBTC')"><span>KNCBTC</span></a>
+            <a href="" ng-click="setTag('binance','WABIBTC')"><span>WABIBTC</span></a>
+            <a href="" ng-click="setTag('binance','ICXETH')"><span>ICXETH</span></a>
+            <a href="" ng-click="setTag('binance','XMRBTC')"><span>XMRBTC</span></a>
+            <a href="" ng-click="setTag('binance','STRATBTC')"><span>STRATBTC</span></a>
+            <a href="" ng-click="setTag('binance','MTLBTC')"><span>MTLBTC</span></a>
+            <a href="" ng-click="setTag('binance','ENJBTC')"><span>ENJBTC</span></a>
+            <a href="" ng-click="setTag('binance','LINKBTC')"><span>LINKBTC</span></a>
+            <a href="" ng-click="setTag('binance','GTOBTC')"><span>GTOBTC</span></a>
+            <a href="" ng-click="setTag('binance','XRPETH')"><span>XRPETH</span></a>
+          </div>
+
+          <div class="tag symbol" ng-if="numb === 2">
+            <a href="" ng-click="setTag('poloniex','BTCUSDT')"><span>BTCUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','XRPUSDT')"><span>XRPUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','ETHUSDT')"><span>ETHUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','XRPBTC')"><span>XRPBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','STRBTC')"><span>STRBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ETHBTC')"><span>ETHBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','BTSBTC')"><span>BTSBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','STRUSDT')"><span>STRUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','SCBTC')"><span>SCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ETCBTC')"><span>ETCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ETCUSDT')"><span>ETCUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','LTCUSDT')"><span>LTCUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','LTCBTC')"><span>LTCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','DGBBTC')"><span>DGBBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','XEMBTC')"><span>XEMBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','STRATBTC')"><span>STRATBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','DOGEBTC')"><span>DOGEBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','BCHUSDT')"><span>BCHUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','STEEMBTC')"><span>STEEMBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','XMRBTC')"><span>XMRBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','BCHBTC')"><span>BCHBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','DASHBTC')"><span>DASHBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','BTSUSD')"><span>BTSUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','NXTBTC')"><span>NXTBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','NXTUSDT')"><span>NXTUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','LSKBTC')"><span>LSKBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','XEMUSD')"><span>XEMUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','XRPUSD')"><span>XRPUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','ZECBTC')"><span>ZECBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ZRXBTC')"><span>ZRXBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','STRUSD')"><span>STRUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','DASHUSDT')"><span>DASHUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','BCNBTC')"><span>BCNBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ZECUSDT')"><span>ZECUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','XMRUSDT')"><span>XMRUSDT</span></a>
+            <a href="" ng-click="setTag('poloniex','MAIDBTC')"><span>MAIDBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','GASBTC')"><span>GASBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','VTCBTC')"><span>VTCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','FCTBTC')"><span>FCTBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ZRXUSD')"><span>ZRXUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','LSKUSD')"><span>LSKUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','EMC2BTC')"><span>EMC2BTC</span></a>
+            <a href="" ng-click="setTag('poloniex','OMGBTC')"><span>OMGBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','DASHUSD')"><span>DASHUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','LBCBTC')"><span>LBCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ARDRBTC')"><span>ARDRBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','ETHUSD')"><span>ETHUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','CVCBTC')"><span>CVCBTC</span></a>
+            <a href="" ng-click="setTag('poloniex','DOGEUSD')"><span>DOGEUSD</span></a>
+            <a href="" ng-click="setTag('poloniex','BURSTBTC')"><span>BURSTBTC</span></a>
+          </div>
+      </div>	  
+		</aside><!-- .left-sidebar -->
+
+		<aside class="right-sidebar">
+			<div class="right_sidebar_haeder"></div>
+      <div class="right_sidebar_content" ng-switch='ordertag'>
+        <div class="right_sidebar_content_head">
+          <h3 ng-init="aco='exchange'">Ордера</h3>
+          <ul class="display_inline ">
+            <li class="excMar" ng-click="aco='exchange'">
+                Exchange
+                <div ng-if="aco==='exchange'" style="background-color: white; height: 2px;">
+                </div>
+            </li>
+            <li class="excMar" ng-click="aco='margin'">
+                Margin
+                <div ng-if="aco==='margin'" style="background-color: white; height: 2px; ">
+                </div>
+            </li>
+          </ul>
+        </div>
+      <!----- THIS IS SPLITER, DON'T SKIP NEXT TIME ------>
+		<div class="next_order ">
+      <div class="firstWrap">
+      <span>Вид ордера</span>
+			<select
+        class="IamSelect"
+        ng-class="{'outside': platform === options[2]}"
+        ng-init="platform = options[0]"
+        ng-model="platform"
+        ng-options="option.name for option in options">
+      </select>
+    </div>
+      <div class="other_orders " ng-init="amount=0" ng-if="platform === options[0]">
+            <div class="right_sidebar_contentStopLoss ">
+              <div class="formInput widthUp">
+                <label for="StopLosAmount"> Price USD</label>
+				<ul class="display_inline alwaysInline">
+                  <li class="one"><a ng-init="colorGreen = 'green'" ng-click="getTick(colorGreen)"></a></li>
+                  <li class="one"><a ng-init="colorRed = 'red'" ng-click="getTick(colorRed)"></a></li>
+                </ul>
+                <div>
+                  <!-- 
+                    <span class="shownForDollar" ng-if="average > 0">$\{{ average }}</span>
+                  -->
+                <input type="text" name="price" value="" id="StopLosAmount" ng-model="price" disabled>
+                </div>
+              </div>
+            </div>
+		</div> 
+		</div>
+        <div class="toShow">
+		  <!-- working directory -->
+      
+  <!-- MARKET -->
+		<div class="other_orders otherWorld" ng-if="platform === options[0]">
+	       <div class="form isFormisOther">
+           <div class="thisIsWrap">
+           <div class="right_sidebar_contentTakeProfit_head headAndBody">
+                <h2>API Users</h2>
+                <ul class="display_inline ">
+                  <li class="fa fa-plus"></li>
+                  <li class="fa fa-minus"></li>
+                </ul>
+              </div>
+            <div class="right_sidebar_contentStopLoss shittyHtml">
+              <div class="formInput">
+                <label for="StopLosAmount">Аккаунт</label>
+                <div>
+                <select
+                  class="IamSelect"
+                  ng-model="account"
+                  ng-options="account.name for account in receivedAccounts"
+                  ng-change="addSelectedAccount(account)">
+                </select>
+                </div>
+              </div>
+              <div class="formInput">
+                <label for="StopLosDepo">Amount BTC</label>
+				<ul class="display_inline">
+                  <li class=""><a ng-init="buyBuy = 'buy'" ng-click="getBalance(buyBuy)"></a></li>
+                  <li class=""><a ng-init="sellSell = 'sell'" ng-click="getBalance(sellSell)"></a></li>
+                </ul>				
+                <input type="text" name="amount" ng-model="amount" value="" id="StopLosDepo">
+              </div>
+            </div>
+          </div>
+				<input type="button" name="submit" class="btn btn_buy moveRight" value="Exchange Buy" ng-click="makeOrderMarket(tag,aco,'buy', amount)">
+				<input type="button" name="submit" class="btn btn_sell moveRight" value="Exchange Sell" ng-click="makeOrderMarket(tag,aco,'sell', amount)">
+          </div>	  
+		</div>
+
+    <!-- LIMITED -->
+    <div class="other_orders otherWorld forMeAndYou" ng-if="platform === options[1]">
+            <div class="right_sidebar_contentStopLoss forMeAndYou">
+              <div class="formInput widthUp">
+                <label for="StopLosAmount"> Price USD</label>
+				<ul class="display_inline alwaysInline">
+                  <li class="one"><a ng-init="colorGre = 'green'" ng-click="getTick(colorGre)"></a></li>
+                  <li class="one"><a ng-init="colorRe = 'red'" ng-click="getTick(colorRe)"></a></li>
+                </ul>
+                <div>
+                <!-- 
+                  <span class="shownForDollar" ng-if="average > 0">$\{{ average }}</span>
+                -->
+                <input type="nuber" name="price" value="" id="StopLosAmount" ng-model="price">
+                </div>
+              </div>
+            </div>
+		
+	       <div class="form isFormis">
+           <div class="thisIsWrap">
+           <div class="right_sidebar_contentTakeProfit_head headAndBody">
+                <h2>API Users</h2>
+                <ul class="display_inline ">
+                  <li class="fa fa-plus"></li>
+                  <li class="fa fa-minus"></li>
+                </ul>
+              </div>
+            <div class="right_sidebar_contentStopLoss shittyHtml">
+              <div class="formInput">
+                <label for="StopLosAmount">Аккаунт</label>
+                <div>
+                <select
+                  class="IamSelect"
+                  ng-model="account"
+                  ng-options="account.name for account in receivedAccounts"
+                  ng-change="addSelectedAccount(account)">
+                </select>
+                </div>
+              </div>
+              <div class="formInput">
+                <label for="StopLosDepo">Amount BTC</label>
+				<ul class="display_inline">
+                  <li class=""><a ng-init="buyBuy = 'buy'" ng-click="getBalance(buyBuy)"></a></li>
+                  <li class=""><a ng-init="sellSell = 'sell'" ng-click="getBalance(sellSell)"></a></li>
+                </ul>				
+                <input type="text" name="amount" ng-model="amount" value="" id="StopLosDepo">
+              </div>
+            </div>
+          </div>
+				<input type="button" name="submit" class="btn btn_buy moveRight" value="Exchange Buy" ng-click="makeOrderLimited(tag, aco, 'buy', price, amount)">
+				<input type="button" name="submit" class="btn btn_sell moveRight" value="Exchange Sell" ng-click="makeOrderLimited(tag, aco, 'sell', price, amount)">
+          </div>	  
+		</div> 
+
+  <!-- LIMITED OCO -->
+		<div class="other_orders other_orders2 " ng-if="platform === options[2]">
+	       <div class="form myForm">
+           <div class="right_sidebar_contentTakeProfit_head headAndBody">
+                <h2>API Users</h2>
+                <ul class="display_inline ">
+                  <li class="fa fa-plus"></li>
+                  <li class="fa fa-minus"></li>
+                </ul>
+              </div>
+            <div class="right_sidebar_contentStopLoss bigger andBigger">
+              <div class="formInput">
+                <label for="StopLosAmount">Аккаунт</label>
+                <div>
+                <select
+                  class="IamSelect"
+                  ng-model="account"
+                  ng-options="account.name for account in receivedAccounts"
+                  ng-change="addSelectedAccount(account)" disabled>
+                </select>
+                </div>
+              </div>
+              <div class="formInput">
+                <label for="StopLosDepo">Amount BTC</label>
+				<ul class="display_inline ">
+                  <li class=""><a ng-init="" ng-click=""></a></li>
+                  <li class=""><a ng-init="" ng-click=""></a></li>
+                </ul>				
+                <input type="text" name="" value="" id="StopLosDepo" disabled>
+              </div>
+              <div class="formInput">
+                <label for="StopLosAmount">Price USD From</label>
+				<ul class="display_inline ">
+                  <li class="one"><a ng-init="" ng-click=""></a></li>
+                  <li class="one"><a ng-init="" ng-click=""></a></li>
+                </ul>
+                <input type="text" name="" value="" id="StopLosAmount" disabled>
+              </div>
+              <div class="formInput">
+                <label for="StopLosDepo">Price USD TO</label>
+				<ul class="display_inline ">
+                  <li class="one"><a ng-init="" ng-click=""></a></li>
+                  <li class="one"><a ng-init="" ng-click=""></a></li>
+                </ul>				
+                <input type="text" name="" value="" id="StopLosDepo" disabled>
+              </div>
+              
+            </div>
+				<input type="button" name="submit" class="btn btn_buy" value="Exchange Buy">
+				<input type="button" name="submit" class="btn btn_sell" value="Exchange Sell">
+          </div>	  
+		</div>
+
+  <!-- TP&SL -->
+     <div class="form" ng-if="platform === options[3]">
+       <div class="sidebar_mark_pcs">
+            <ul>
+              <li ng-repeat="pers in receivedAccounts" ng-click="addAccount(pers); active = !active">
+                \{{ pers.name }}
+                <i ng-class="{'fa fa-times red': !isActive(pers.name), 'fa fa-check green': isActive(pers.name)}"></i>
+              </li>
+            </ul>
+          </div>
+          <!-- 00000000000 JUST A SEPARATOR 000000000000 -->
+            <div class="right_sidebar_contentTakeProfit">
+              <div class="right_sidebar_contentTakeProfit_head">
+                <h2 ng-init="tpi=['1']">Take Profit</h2>
+                <ul class="display_inline ">
+                  <li class="fa fa-plus" ng-click="tpi.push(''+tpi.length+1)"></li>
+                  <li class="fa fa-minus" ng-click="(tpi.length>1)&&tpi.pop()"></li>
+                </ul>
+              </div>
+              <div ng-repeat="t in tpi" ng-init="tp.push({amount:0,deposit:0})">
+              <div class="formInput">
+                <div class="wrapperForField">
+                  <label for="TakeProfitAmount">Price</label>
+                <ul>
+                  <li class="reddy" ng-init="priceTp = 'takeprofit'" ng-click="getSymbolPrice(priceTp)"></li>
+                </ul>
+                </div>
+                <!-- 
+                  <span class="hiddenSpy">\{{ priceTP }}</span>
+                -->
+                <input type="number" name="" value="" id="TakeProfitAmount" ng-model="tp[$index]['amount']">
+              </div>
+              <div class="formInput">
+                <label for="TakeProfitDepo">% Депозит</label>
+                <input type="number" id="TakeProfitDepo" min="1" max="100" ng-model="tp[$index]['deposit']"  prevent-typing-greater />
+              </div>
+            </div>
+            </div>
+            <div class="right_sidebar_contentStopLoss">
+              <div class="right_sidebar_contentStopLoss_head">
+                <h2 ng-init="sli=['1']">Stop Loss</h2>
+                <ul class="display_inline ">
+                  <li class="fa fa-plus" ng-click="sli.push(''+sli.length+1)"></li>
+                  <li class="fa fa-minus" ng-click="(sli.length>1)&&sli.pop()"></li>
+                </ul>
+              </div>
+              <div ng-repeat="s in sli" ng-init="sl.push({amount:0,deposit:0})">
+              <div class="formInput">
+                <div class="wrapperForField">
+                  <label for="TakeProfitAmount">Price</label>
+                <ul>
+                  <li class="reddy" ng-init="priceSl = 'stoploss'" ng-click="getSymbolPrice(priceSl)"></li>
+                </ul>
+                </div>
+                <!-- 
+                  <span class="hiddenSpy">\{{ priceSL }}</span>
+                  -->
+                <input type="number" name="" value="" id="StopLosAmount" ng-model="sl[$index]['amount']">
+              </div>
+              <div class="formInput">
+                <label for="StopLosDepo">% Депозит</label>
+                <input type="number" min="1" max="100" id="StopLosDepo" ng-model="sl[$index]['deposit']" prevent-typing-greater />
+              </div>
+              </div>
+            </div>
+                <input type="button" name="buy" class="btn orderHere" value="Make Order" ng-click="makeOrderTPSL(tag,aco)">
+      </div>
+
+
+  </div>
+</div>  
+      <div class="right_sidebar_remnants">
+        <div class="right_sidebar_remnants_head">
+          <h3>Остатки</h3>
+          <ul class="display_inline ">
+            <li class="active"><a href="#"><img src="assets/icone1.png" alt="graf"></a></li>
+            <li class=""><a href="#"><img src="assets/icone2.png" alt="graf"></a></li>
+          </ul>
+        </div>
+        <table>
+          <tr>
+            <th></th>
+            <th>Exchange</th>
+            <th>Margin</th>
+          </tr>
+          <tr>
+            <td rowspan="2">USD</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td rowspan="2">BTC</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </table>
+      </div>
+	  
+	  
+	  
+	  
+		</aside><!-- .right-sidebar -->
+    </div>
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+<footer class="footer">
+</footer><!-- .footer -->
+<script type="text/javascript" src="./js/scripts.js"></script>
+<script type="text/javascript" src="./js/http.js"></script>
+</body>
+</html>
